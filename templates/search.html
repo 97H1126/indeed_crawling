@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Scrapper</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <hgroup>
+            <h1>검색결과:"{{keyword}}":</h1>
+            <a target="_blank" href= "/export?keyword={{keyword}}"> (clik)파일 저장하기</a>
+        </hgroup>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>직무</th>
+                    <th>회사</th>
+                    <th>지역</th>
+                    <th>링크</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                    <tr>
+                        <td>{{job.직무}}</td>
+                        <td>{{job.회사}}</td>
+                        <td>{{job.위치}}</td>
+                        
+                        <td><a href={{job.회사공고url}} target="_blank">더보기 &raquo;</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
