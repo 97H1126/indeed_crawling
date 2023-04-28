@@ -1,40 +1,157 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Scrapper</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-</head>
-<body>
-    <main class="container">
-        <hgroup>
-            <h1>검색결과:"{{keyword}}":</h1>
-            <a target="_blank" href= "/export?keyword={{keyword}}"> (clik)파일 저장하기</a>
-        </hgroup>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>직무</th>
-                    <th>회사</th>
-                    <th>지역</th>
-                    <th>링크</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for job in jobs %}
-                    <tr>
-                        <td>{{job.직무}}</td>
-                        <td>{{job.회사}}</td>
-                        <td>{{job.위치}}</td>
-                        
-                        <td><a href={{job.회사공고url}} target="_blank">더보기 &raquo;</a></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Scrapper</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background-color: #4b93e3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .container {
+      width: 80%;
+      height: 80%;
+      overflow: auto;
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; */
+    }
+
+    hgroup {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    hgroup h1 {
+      margin: 0;
+      color: #fff;
+    }
+
+    hgroup button {
+      border: none;
+      background-color: transparent;
+      border-radius: 3px;
+    }
+
+    hgroup a {
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      font-size: 12px;
+    }
+    .wrapper {
+      display: flex;
+      height: 100%;
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      max-width: 100%;
+      box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      font-size: 12px;
+      border: none;
+      border-collapse: collapse;
+      white-space: nowrap;
+    }
+
+    thead {
+      background-color: #4fc3a1;
+      color: #fff;
+      height: 40px;
+    }
+
+    tbody {
+      background-color: #fff;
+      text-align: center;
+    }
+
+    td {
+      border-right: 2px solid #f8f8f8;
+      font-size: 12px;
+      padding: 12px;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+
+    td button {
+      background-color: transparent;
+      border: 1px solid black;
+      border-radius: 3px;
+    }
+
+    td a {
+      text-decoration: none;
+      color: black;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .material-symbols-outlined {
+      font-size: 19px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <hgroup>
+      <h1>검색결과:{{keyword}}</h1>
+      <a target="_blank" href="/export?keyword={{keyword}}">
+        <span>파일 저장</span>
+        <span class="material-symbols-outlined"> download </span></a>
+    </hgroup>
+    <div class="wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>직무</th>
+            <th>회사</th>
+            <th>지역</th>
+            <th>링크</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for job in jobs %}
+          <tr>
+            <td>{{job.직무}}</td>
+            <td>{{job.회사}}</td>
+            <td>{{job.위치}}</td>
+            <td>
+              <button><a href="{{job.회사공고url}}" target="_blank">더보기</a></button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
 </body>
+
 </html>
